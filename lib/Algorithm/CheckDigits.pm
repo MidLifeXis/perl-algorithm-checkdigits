@@ -30,7 +30,12 @@ our @EXPORT = qw( CheckDigits );
 
 use version; our $VERSION = qv('1.2.1');
 
-my %methods = (
+my %methods;
+sub plug_in {
+    %methods = ( %methods, @_ );
+}    # plug_in
+
+plug_in(
     'mbase-001'          => 'Algorithm::CheckDigits::MBase_001',
     'upc'                => 'Algorithm::CheckDigits::MBase_001',
     'mbase-002'          => 'Algorithm::CheckDigits::MBase_002',
@@ -288,6 +293,27 @@ Algorithm::CheckDigits provides and where to look for further
 information.
 
  perl -MAlgorithm::CheckDigits -e Algorithm::CheckDigits::print_methods
+
+=head2 Algorithm::CheckDigits::plug_in()
+
+Allows another module to plug itself into the Algorithm::CheckDigits
+framework.
+
+  package My::CheckDigits::Registry;
+
+  use Algorithm::CheckDigits ();
+  Algorithm::CheckDigits::plug_in(
+    'my_foo_check_a' => 'My::CheckDigits::Foo',
+    'my_foo_check_b' => 'My::CheckDigits::Foo',
+    'my_bar_check_a' => 'My::CheckDigits::Bar',
+  );
+
+Then to use them...
+
+  use Algorithm::CheckDigits;
+  use My::CheckDigits::Registry;
+
+  my $checker = CheckDigits( 'my_foo_check_a' );
 
 =head2 CHECK SUM METHODS
 

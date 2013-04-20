@@ -58,6 +58,10 @@ t/iban.t
 t/imei.t
 t/isbn13.t
 t/nip.t
+t/MyPluginLib.pm
+t/MyPluginLibA.pm
+t/MyPluginLibB.pm
+t/plugin.t
 t/pod-coverage.t
 t/pod.t
 t/script-checkdigits.t
