@@ -299,21 +299,24 @@ information.
 Allows another module to plug itself into the Algorithm::CheckDigits
 framework.
 
-  package My::CheckDigits::Registry;
+  package Algorithm::CheckDigits::Plugin::MyPlugins;
 
   use Algorithm::CheckDigits ();
   Algorithm::CheckDigits::plug_in(
-    'my_foo_check_a' => 'My::CheckDigits::Foo',
-    'my_foo_check_b' => 'My::CheckDigits::Foo',
-    'my_bar_check_a' => 'My::CheckDigits::Bar',
+    'my_foo_check_a' => 'Algorithm::CheckDigits::Plugin::MyPlugins::Foo',
+    'my_foo_check_b' => 'Algorithm::CheckDigits::Plugin::MyPlugins::Foo',
+    'my_bar_check_a' => 'Algorithm::CheckDigits::Plugin::MyPlugins::Bar',
   );
 
 Then to use them...
 
   use Algorithm::CheckDigits;
-  use My::CheckDigits::Registry;
+  use Algorithm::CheckDigits::Plugin::MyPlugins;
 
   my $checker = CheckDigits( 'my_foo_check_a' );
+
+It is recommended to create third-party plugin modules under the
+namespace C<< Algorithm::CheckDigits::Plugin:: >>.
 
 =head2 CHECK SUM METHODS
 
