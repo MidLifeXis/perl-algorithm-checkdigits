@@ -32,7 +32,11 @@ use version; our $VERSION = qv('1.2.1');
 
 my %methods;
 sub plug_in {
-    %methods = ( %methods, @_ );
+    my %new = @_;
+    while ( my ( $key, $val ) = each %new ) {
+        $methods{lc( $key )} = $val;
+    }
+    return 1;
 }    # plug_in
 
 plug_in(

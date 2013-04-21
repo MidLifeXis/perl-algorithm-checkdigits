@@ -58,7 +58,6 @@ t/iban.t
 t/imei.t
 t/isbn13.t
 t/nip.t
-t/MyPluginLib.pm
 t/MyPluginLibA.pm
 t/MyPluginLibB.pm
 t/plugin.t
